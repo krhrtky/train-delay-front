@@ -1,0 +1,19 @@
+{
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "train-delay-front-dev-20191022150808-authRole",
+            "UnauthRoleArn": "arn:aws:iam::970667668847:role/train-delay-front-dev-20191022150808-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::970667668847:role/train-delay-front-dev-20191022150808-authRole",
+            "Region": "ap-northeast-1",
+            "DeploymentBucketName": "train-delay-front-dev-20191022150808-deployment",
+            "UnauthRoleName": "train-delay-front-dev-20191022150808-unauthRole",
+            "StackName": "train-delay-front-dev-20191022150808",
+            "StackId": "arn:aws:cloudformation:ap-northeast-1:970667668847:stack/train-delay-front-dev-20191022150808/520e9240-f492-11e9-aad6-06219e647854"
+        },
+        "categories": {
+            "auth": {
+                "cognito9fb63471": {}
+            }
+        }
+    }
+}

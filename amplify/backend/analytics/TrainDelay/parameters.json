@@ -1,0 +1,20 @@
+{
+    "appName": "TrainDelay",
+    "roleName": "pinpointLambdaRole4dc2fb79",
+    "cloudWatchPolicyName": "cloudWatchPolicy4dc2fb79",
+    "pinpointPolicyName": "pinpointPolicy4dc2fb79",
+    "authPolicyName": "pinpoint_amplify_4dc2fb79",
+    "unauthPolicyName": "pinpoint_amplify_4dc2fb79",
+    "authRoleName": {
+        "Ref": "AuthRoleName"
+    },
+    "unauthRoleName": {
+        "Ref": "UnauthRoleName"
+    },
+    "authRoleArn": {
+        "Fn::GetAtt": [
+            "AuthRole",
+            "Arn"
+        ]
+    }
+}
