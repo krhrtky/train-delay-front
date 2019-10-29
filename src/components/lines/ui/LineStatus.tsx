@@ -1,4 +1,6 @@
 import * as React from 'react'
+import Button from "@material-ui/core/Button"
+
 
 export interface LineProps {
   name: string
@@ -9,9 +11,13 @@ export interface LineProps {
 const LineStatus = (props: LineProps) =>
   <h2>
     {props.name}:
-    <button onClick={props.handleClick}>
+    <Button
+      variant="contained"
+      color="primary"
+      onClick={props.handleClick}
+    >
       {props.notice ? '非通知にする' : '通知する'}
-    </button>
+    </Button>
   </h2>
 
 export default LineStatus
