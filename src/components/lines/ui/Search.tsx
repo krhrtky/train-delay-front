@@ -1,12 +1,29 @@
 import * as React from 'react'
+import { Button, TextField } from '@material-ui/core'
 
 interface SearchProcess {
+  keyword: string
   handleInput: (e: any) => void
+  clear: () => void
 }
 
 const Search = (props: SearchProcess) =>
-  <label>キーワード
-    <input type="text" name="keyword" onChange={props.handleInput}/>
-  </label>
+  <>
+    <TextField
+        label="キーワード"
+        value={props.keyword}
+        onChange={props.handleInput}
+        id="keyword"
+    />
+    <Button
+      variant="contained"
+      color="secondary"
+      size="small"
+      style={{margin: '0.8rem'}}
+      onClick={props.clear}
+    >
+      クリア
+    </Button>
+  </>
 
 export default Search

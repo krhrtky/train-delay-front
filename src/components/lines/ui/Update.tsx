@@ -10,6 +10,7 @@ const Update: React.FC<UpdateProcess> = props =>
     variant="contained"
     color="primary"
     size="small"
+    style={{margin: '0.8rem'}}
     onClick={props.handleClick}
   >
     最新化

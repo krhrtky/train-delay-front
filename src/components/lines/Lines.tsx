@@ -101,10 +101,18 @@ export default class Lines extends React.Component<any, LinesState> {
     this.setState({ keyword })
   }
 
+  clearKeyword() {
+    this.setState({ keyword: '' })
+  }
+
 
   render() {
     return <>
-      <Search handleInput={this.inputKeyword}/>
+      <Search
+        keyword={this.state.keyword}
+        handleInput={this.inputKeyword}
+        clear={this.clearKeyword.bind(this)}
+      />
       <Update handleClick={this.update}/>
 
       {
