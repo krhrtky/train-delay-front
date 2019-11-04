@@ -1,23 +1,40 @@
 import * as React from 'react'
-import Button from "@material-ui/core/Button"
+import { Checkbox, Table, TableBody, TableCell, TableHead, TableRow } from '@material-ui/core'
+import { Line } from '../Lines'
 
 
-export interface LineProps {
-  name: string
-  notice: boolean
+interface LinesTableProps {
+  lines: Array<Line>
   handleClick: (e: any) => Promise<void>
 }
 
-const LineStatus = (props: LineProps) =>
-  <h2>
-    {props.name}:
-    <Button
-      variant="contained"
-      color="primary"
-      onClick={props.handleClick}
-    >
-      {props.notice ? '非通知にする' : '通知する'}
-    </Button>
-  </h2>
+export const LineStatus: React.FC<LinesTableProps> = props => (
+  <Table stickyHeader aria-label="sticky table">
+    <TableHead>
+      <TableRow>
+        <TableCell padding="checkbox" size={'small'} align={'center'} />
+        <TableCell size={'small'} align={'center'}>路線</TableCell>
+      </TableRow>
+    </TableHead>
+    <TableBody>
+      {
+        props.lines
+          .map((line, i) =>
+            <TableRow hover role="checkbox" tabIndex={-1} key={i}>
+              <TableCell padding="checkbox" size={'small'} align={'center'}>
+                <Checkbox
+                  value={line.name}
+                  checked={line.notice}
+                  onChange={props.handleClick} />
+              </TableCell>
+              <TableCell size={'small'} align={'left'}>
+                {line.name}
+              </TableCell>
+            </TableRow>
+          )
+      }
+    </TableBody>
+  </Table>
+)
 
 export default LineStatus
