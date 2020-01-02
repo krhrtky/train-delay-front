@@ -1,5 +1,6 @@
 /** @type import('webpack').Configuration */
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const webpack = require('webpack');
 
 module.exports = (env, argv) => {
@@ -30,6 +31,9 @@ module.exports = (env, argv) => {
       }),
       new webpack.DefinePlugin({
         'process.env.API_END_POINT': JSON.stringify(process.env.API_END_POINT),
+      }),
+      new CleanWebpackPlugin({
+        cleanAfterEveryBuildPatterns: ['dist'],
       }),
     ],
     devServer: {
