@@ -5,7 +5,7 @@ import { Line } from '../Lines'
 
 interface LinesTableProps {
   lines: Array<Line>
-  handleClick: (e: any) => Promise<void>
+  handleClick: (e: any) => Promise<void> | void
 }
 
 export const LineStatus: React.FC<LinesTableProps> = props => (

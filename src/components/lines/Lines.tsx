@@ -1,129 +1,89 @@
-import * as React from 'react'
-import { API } from 'aws-amplify'
-import LineStatus from './ui/LineStatus'
-import { ChangeEvent } from 'react'
-import Search from './ui/Search'
-import Update from './ui/Update'
-import Loading from './ui/Loading'
-import styled from 'styled-components'
+import * as React from 'react';
+import { API } from 'aws-amplify';
+import LineStatus from './ui/LineStatus';
+import { ChangeEvent, useEffect, useState } from 'react';
+import Search from './ui/Search';
+import Update from './ui/Update';
+import Loading from './ui/Loading';
+import styled from 'styled-components';
+import { useAsyncReducer } from '../../store/reducers';
 
 export type Line = {
-  name: string
-  notice: boolean
-}
+  name: string;
+  notice: boolean;
+};
 
 const Wrapper = styled.div`
-    width: 70vh;
-    height: 80vh;
-    overflow: auto;
-    `
+  width: 70vh;
+  height: 80vh;
+  overflow: auto;
+`;
 
 interface LinesState {
-  lines: Array<Line>
-  loading: boolean
-  keyword: string
+  lines: Array<Line>;
+  loading: boolean;
+  keyword: string;
 }
 
-export default class Lines extends React.Component<any, LinesState> {
-  constructor(props) {
-    super(props)
-    this.state = {
-      lines: [],
-      loading: false,
-      keyword: ''
-    }
-    this.update = this.update.bind(this)
-    this.inputKeyword = this.inputKeyword.bind(this)
-    this.change = this.change.bind(this)
-  }
+const Lines = () => {
+  const [state, dispatch] = useAsyncReducer();
 
-  async update() {
-    this.setState({ loading: true })
-    try {
-      const { data } = await API.get("APIGatewayAPI", "/lines", { response: true })
-      this.setState({
-        lines: data.lines as Array<Line>
-      })
-    } catch (e) {
-      console.error(e)
-    }
-    this.setState({ loading: false })
-  }
-
-  async componentDidMount() {
-    await this.update()
-  }
-
-  async changeNotice(props) {
-
-    await API.put("APIGatewayAPI", `/lines/${encodeURI(props.name)}`, {
-      body: {
-        name: props.name,
-        notice: !props.notice
-      }
-    })
-
-    this.setState({
-      lines: this.state.lines.map(line => {
-        return line.name === props.name ?
-          {
-            name: line.name,
-            notice: !line.notice
-          }
-          : line
-      })
-    })
-  }
-
-  async change(e) {
-    const value = (e.currentTarget as HTMLInputElement).value
-    const target = this.state.lines.find(line => line.name === value)
-
-    if (target) {
-      await this.changeNotice(target)
-    }
-  }
-
-  filterLine(): Array<Line> {
-    return this.state.lines
-      .filter(
-        line => line.name.match(
-          new RegExp(
-            this.state.keyword
-              .replace(/[\\^$.*+?()[\]{}|]/g, '.*\\$&.*')
-          )
+  const [loading, setLoading] = useState(true);
+  const [keyword, updateKeyword] = useState('');
+  const inputKeyword = (e: ChangeEvent) => {
+    const keyword = (e.target as HTMLInputElement).value;
+    updateKeyword(keyword);
+  };
+  const filterLine = () =>
+    state.lines.filter(line =>
+      line.name.match(
+        new RegExp(
+          keyword.replace(/[\\^$.*+?()[\]{}|]/g, '.*\\$&.*')
         )
       )
-  }
+    );
 
-  inputKeyword(e: ChangeEvent) {
-    const keyword = (e.target as HTMLInputElement).value
-    this.setState({ keyword })
-  }
+  useEffect(() => {
+    setLoading(true);
+    dispatch({ type: 'INIT' });
+    setLoading(false);
+    console.log('call')
+  }, []);
 
-  clearKeyword() {
-    this.setState({ keyword: '' })
-  }
+  const clearKeyword = () => {
+    updateKeyword('');
+  };
 
+  const change = e => {
+    const value = (e.currentTarget as HTMLInputElement).value;
+    const target = state.lines.find(line => line.name === value);
 
-  render() {
-    return <>
+    if (target) {
+      dispatch({
+        type: 'UPDATE',
+        payload: { name: target.name, notice: target.notice },
+      });
+    }
+  };
+
+  return (
+    <>
       <Search
-        keyword={this.state.keyword}
-        handleInput={this.inputKeyword}
-        clear={this.clearKeyword.bind(this)}
+        keyword={keyword}
+        handleInput={inputKeyword}
+        clear={clearKeyword}
       />
-      <Update handleClick={this.update}/>
+      <Update handleClick={() => dispatch({ type: 'INIT' })} />
 
-      {
-        this.state.loading
-          ? <Loading/>
-          : (
-            <Wrapper>
-              <LineStatus handleClick={this.change} lines={this.filterLine()} />
-            </Wrapper>
-          )
-      }
+      {loading ? (
+        <Loading />
+      ) : (
+        <Wrapper>
+          <LineStatus handleClick={change} lines={filterLine()} />
+        </Wrapper>
+      )}
     </>
-  }
-}
+  );
+};
+
+export default Lines

@@ -2,7 +2,7 @@ import * as React from 'react'
 import { Button } from '@material-ui/core'
 
 interface UpdateProcess {
-  handleClick: () => Promise<void>
+  handleClick: () => Promise<void> | void
 }
 
 const Update: React.FC<UpdateProcess> = props =>
