@@ -12,7 +12,7 @@ module.exports = (env, argv) => {
     entry: './src/main.tsx',
     output: {
       path: `${__dirname}/dist`,
-      filename: 'main.[hash].js',
+      filename: '[name].[hash].js'
     },
     module: {
       rules: [
@@ -39,6 +39,6 @@ module.exports = (env, argv) => {
     devServer: {
       open: true,
     },
-    devtool: "source-map"
+    devtool: isProduction ? false : 'source-map',
   };
 };
