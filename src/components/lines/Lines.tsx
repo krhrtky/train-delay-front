@@ -1,12 +1,11 @@
 import * as React from 'react';
-import { API } from 'aws-amplify';
 import LineStatus from './ui/LineStatus';
 import { ChangeEvent, useEffect, useState } from 'react';
 import Search from './ui/Search';
 import Update from './ui/Update';
-import Loading from './ui/Loading';
+import { LoadingText} from '@/components/atoms/Loading'
 import styled from 'styled-components';
-import { useAsyncReducer } from '../../store/reducers';
+import { useAsyncReducer } from '@/store/reducers';
 
 export type Line = {
   name: string;
@@ -76,7 +75,7 @@ const Lines = () => {
       <Update handleClick={() => dispatch({ type: 'INIT' })} />
 
       {loading ? (
-        <Loading />
+        <LoadingText />
       ) : (
         <Wrapper>
           <LineStatus handleClick={change} lines={filterLine()} />

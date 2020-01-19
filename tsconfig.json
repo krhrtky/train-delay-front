@@ -9,6 +9,10 @@
       "es2019",
       "dom"
     ],
-    "types": ["react"]
+    "types": ["react"],
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["./src/*"],
+    }
   }
 }
