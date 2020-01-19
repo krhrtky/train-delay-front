@@ -2,6 +2,7 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const webpack = require('webpack');
+const { resolve } = require('path');
 
 module.exports = (env, argv) => {
   const mode = argv.mode;
@@ -24,6 +25,9 @@ module.exports = (env, argv) => {
     },
     resolve: {
       extensions: ['.ts', '.tsx', '.js', '.json'],
+      alias: {
+        '@': resolve(__dirname, 'src')
+      }
     },
     plugins: [
       new HtmlWebpackPlugin({
