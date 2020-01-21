@@ -18,12 +18,6 @@ const Wrapper = styled.div`
   overflow: auto;
 `;
 
-interface LinesState {
-  lines: Array<Line>;
-  loading: boolean;
-  keyword: string;
-}
-
 const Lines = () => {
   const [state, dispatch] = useAsyncReducer();
 
