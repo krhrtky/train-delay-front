@@ -40,7 +40,6 @@ const Lines = () => {
     setLoading(true);
     dispatch({ type: 'INIT' });
     setLoading(false);
-    console.log('call')
   }, []);
 
   const clearKeyword = () => {
