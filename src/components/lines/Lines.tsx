@@ -2,10 +2,10 @@ import * as React from 'react';
 import LineStatus from './ui/LineStatus';
 import { ChangeEvent, useEffect, useState } from 'react';
 import Search from './ui/Search';
-import Update from './ui/Update';
 import { LoadingText} from '@/components/atoms/Loading'
 import styled from 'styled-components';
 import { useAsyncReducer } from '@/store/reducers';
+import { Button } from "@material-ui/core";
 
 export type Line = {
   name: string;
@@ -72,9 +72,16 @@ const Lines = () => {
         handleInput={inputKeyword}
         clear={clearKeyword}
       />
-      <Update handleClick={() => dispatch({ type: 'INIT' })} />
-
-      {loading ? (
+        <Button
+            variant="contained"
+            color="primary"
+            size="small"
+            style={{margin: '0.8rem'}}
+            onClick={() => dispatch({ type: 'INIT' })}
+        >
+            最新化
+        </Button>
+        {loading ? (
         <LoadingText />
       ) : (
         <Wrapper>
