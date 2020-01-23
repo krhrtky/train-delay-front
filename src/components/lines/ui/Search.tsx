@@ -7,7 +7,7 @@ interface SearchProcess {
   clear: () => void
 }
 
-const Search = (props: SearchProcess) =>
+export const Search = (props: SearchProcess) =>
   <>
     <TextField
         label="キーワード"
@@ -24,6 +24,4 @@ const Search = (props: SearchProcess) =>
     >
       クリア
     </Button>
-  </>
-
-export default Search
+  </>;

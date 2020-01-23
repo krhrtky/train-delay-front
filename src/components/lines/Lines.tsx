@@ -1,7 +1,7 @@
 import * as React from 'react';
 import LineStatus from './ui/LineStatus';
 import { ChangeEvent, useEffect, useState } from 'react';
-import Search from './ui/Search';
+import { Search } from './ui/Search';
 import { LoadingText} from '@/components/atoms/Loading'
 import styled from 'styled-components';
 import { useAsyncReducer } from '@/store/reducers';
