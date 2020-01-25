@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { storiesOf } from '@storybook/react';
-import { LineTable } from './LineTable';
+import { LinesTable } from './LinesTable';
 
 const emptyProps = {
     lines: [],
@@ -16,5 +16,5 @@ const linesProps = {
 };
 
 storiesOf('molecules/lines', module)
-    .add('LineTable/empty', () => <LineTable {...emptyProps} />)
-.add('LineTable/fill', () => <LineTable {...linesProps} />);
+    .add('LineTable/empty', () => <LinesTable {...emptyProps} />)
+.add('LineTable/fill', () => <LinesTable {...linesProps} />);
