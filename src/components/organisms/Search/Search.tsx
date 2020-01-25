@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { Input } from "@/components/molecules/form";
-import {Button} from "@material-ui/core";
+import { Button } from "@material-ui/core";
 
 type Props = {
     label?: string
