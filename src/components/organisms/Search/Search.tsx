@@ -2,7 +2,7 @@ import * as React from 'react'
 import { Input } from "@/components/molecules/form";
 import { Button } from "@material-ui/core";
 
-type Props = {
+export type Props = {
     label?: string
     word: string
     onInput: (e: any) => void

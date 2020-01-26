@@ -6,7 +6,7 @@ export type Line = {
     notice: boolean;
 };
 
-type Props = {
+export type Props = {
     lines: Array<Line>
     handleClick: (e: any) => Promise<void> | void
 }

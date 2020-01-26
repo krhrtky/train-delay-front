@@ -1,1 +1,1 @@
-export { Search } from './Search'
+export { Props as SearchProps, Search } from './Search'
