@@ -1,4 +1,4 @@
-import Lines from "./lines/Lines"
+import { Lines } from "@/components/pages/Lines"
 import { AppBar, Box, Container, Typography } from "@material-ui/core"
 import * as React from "react"
 
