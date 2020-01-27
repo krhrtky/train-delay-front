@@ -1,6 +1,9 @@
 /** @type import('webpack').Configuration */
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const SpeedMeasurePlugin = require("speed-measure-webpack-plugin");
+
 const webpack = require('webpack');
 const { resolve } = require('path');
 
@@ -8,7 +11,9 @@ module.exports = (env, argv) => {
   const mode = argv.mode;
   const isProduction = mode === 'production';
 
-  return {
+  const smp = new SpeedMeasurePlugin({ disable: !isProduction });
+
+  return smp.wrap({
     mode: mode,
     entry: './src/main.tsx',
     output: {
@@ -39,10 +44,11 @@ module.exports = (env, argv) => {
       new CleanWebpackPlugin({
         cleanAfterEveryBuildPatterns: ['dist'],
       }),
+      new BundleAnalyzerPlugin(),
     ],
     devServer: {
       open: true,
     },
     devtool: isProduction ? false : 'source-map',
-  };
+  });
 };
