@@ -1,6 +1,6 @@
-import * as React from 'react'
-import {useAsyncReducer} from '@/store/reducers';
-import {ChangeEvent, useEffect, useState} from 'react';
+import * as React from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
+import { useAsyncReducer } from '@/store/reducers';
 import { LinesStatus } from "@/components/templates/status";
 
 
@@ -54,5 +54,4 @@ export const Lines = () => {
             handleClick={change}
         />
     )
-
 };

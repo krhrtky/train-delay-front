@@ -1,6 +1,7 @@
 import * as React from 'react'
-import { Input } from "@/components/molecules/form";
-import { Button } from "@material-ui/core";
+import styled from 'styled-components';
+import { Input } from '@/components/molecules/form';
+import { Button as B } from '@/components/atoms/ui';
 
 export type Props = {
     label?: string
@@ -9,17 +10,20 @@ export type Props = {
     clear?: () => void
     onUpdate: () => void
 }
-export const Search = (props: Props) => (
+
+const Button = styled(B)`
+    margin: '0.8rem';
+`;
+
+export const Search = (props: Props) =>
     <>
         <Input {...props} />
         <Button
             variant="contained"
             color="primary"
             size="small"
-            style={{margin: '0.8rem'}}
             onClick={props.onUpdate}
         >
             最新化
         </Button>
-    </>
-);
+    </>;

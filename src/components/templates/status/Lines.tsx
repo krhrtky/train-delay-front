@@ -14,15 +14,17 @@ const Wrapper = styled.div`
   overflow: auto;
 `;
 
-export const Lines: React.FC<Props> = ({
-                                           loading,
-                                           word,
-                                           onInput,
-                                           onUpdate,
-                                           lines,
-                                           handleClick,
-                                           clear
-                                       }) =>
+export const Lines = (
+    {
+        loading,
+        word,
+        onInput,
+        onUpdate,
+        lines,
+        handleClick,
+        clear
+    }: Props
+) =>
     <>
         <LinesSearch word={word} onInput={onInput} onUpdate={onUpdate} clear={clear}/>
         {loading ? (

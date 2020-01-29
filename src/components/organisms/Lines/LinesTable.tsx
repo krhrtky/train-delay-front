@@ -1,5 +1,12 @@
 import * as React from 'react'
-import { Checkbox, Table, TableBody, TableCell, TableHead, TableRow } from '@material-ui/core'
+import {
+    Checkbox,
+    Table,
+    TableBody,
+    TableCell,
+    TableHead,
+    TableRow
+} from '@/components/atoms/ui';
 
 export type Line = {
     name: string;
@@ -11,7 +18,7 @@ export type Props = {
     handleClick: (e: any) => Promise<void> | void
 }
 
-export const LinesTable  = (props: Props) => (
+export const LinesTable  = (props: Props) =>
     <Table stickyHeader aria-label="sticky table">
         <TableHead>
             <TableRow>
@@ -37,5 +44,4 @@ export const LinesTable  = (props: Props) => (
                     )
             }
         </TableBody>
-    </Table>
-);
+    </Table>;

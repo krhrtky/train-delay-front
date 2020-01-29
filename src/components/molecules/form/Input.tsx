@@ -1,5 +1,6 @@
 import * as React from 'react'
-import { Button, TextField } from '@material-ui/core'
+import styled from "styled-components";
+import { Button as B, TextField } from '@/components/atoms/ui'
 
 export type Props = {
     label?: string
@@ -8,12 +9,18 @@ export type Props = {
     clear?: () => void
 }
 
-export const Input = ({
-                          label  = '',
-                          word,
-                          onInput,
-                          clear
-                      }: Props) =>
+const Button = styled(B)`
+    margin: '0.8rem'
+`;
+
+export const Input = (
+    {
+        label  = '',
+        word,
+        onInput,
+        clear
+    }: Props
+) =>
     <>
         <TextField
             label={label}
@@ -27,7 +34,6 @@ export const Input = ({
                     variant="contained"
                     color="secondary"
                     size="small"
-                    style={{margin: '0.8rem'}}
                     onClick={clear}
                 >
                     クリア

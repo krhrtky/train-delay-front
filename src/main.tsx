@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { render } from "react-dom";
-import Amplify from 'aws-amplify'
-import App from './components/App'
+import Amplify from 'aws-amplify';
+import App from '@/components/App';
 
 Amplify.configure({
   API: {
@@ -12,7 +12,7 @@ Amplify.configure({
       },
     ]
   }
-})
+});
 
 
 render(<App/>, document.querySelector('#app'));
